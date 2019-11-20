@@ -1,0 +1,19 @@
+#include <regex> 
+
+void replace_all(std::string &str, const std::string &from, const std::string &to) {
+    if (from.empty()) return;
+    size_t start_pos = 0;
+    while ((start_pos = str.find(from, start_pos)) != std::string::npos) {
+        str.replace(start_pos, from.length(), to);
+        start_pos += to.length();
+    }
+}
+
+bool string_match(std::string source, std::string target) {
+	std::string pattern = "^" + source + "$";
+    replace_all(pattern, "*", ".*");
+    replace_all(pattern, "?", ".?");
+    std::regex express(pattern);
+    std::match_results<std::string::iterator> result;
+    return std::regex_match(target.begin(), target.end(), result, express);
+}
