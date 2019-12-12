@@ -50,6 +50,8 @@ inline void debug_print_hex(const void* buf, size_t len) {
 	#define DBG(fmt)
 #endif
 
+#define HEX(buf, len) debug_print_hex(buf, len)
+
 #define INF(fmt) debug_print("INF", __FILE__, __LINE__, fmt)
 #define TRC(fmt) debug_print("TRC", __FILE__, __LINE__, fmt)
 #define WRN(fmt) debug_print("WRN", __FILE__, __LINE__, fmt)
