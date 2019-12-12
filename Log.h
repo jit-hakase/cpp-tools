@@ -30,6 +30,20 @@ inline void debug_print(const char *lvl, const char *file, int line, const char 
 	va_end(args);
 }
 
+inline void debug_print_hex(const void* buf, size_t len) {
+	auto *ptr = static_cast<const char*>(buf);
+	
+	for (int i = 0; i < len; ++i) {
+		if (i && !(i%16)) {
+			printf("\n");
+		} else if (!(i%8)) {
+			printf(" ");
+		}
+		printf("%02hhx ", *(ptr+i));
+	}
+	printf("\n");
+}
+
 #ifdef DEBUG
 	#define DBG(fmt) debug_print("DBG", __FILE__, __LINE__, fmt)
 #else
