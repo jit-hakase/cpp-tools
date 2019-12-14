@@ -13,7 +13,11 @@ inline T change_endian(T value) {
 	return result;
 }
 
+#ifndef _BIG_ENDIAN_
 #define CHANGE_ENDIAN(v) v = change_endian(v);
+#else
+#define CHANGE_ENDIAN(v)
+#endif
 
 /*
 inline uint16_t change_endian(uint16_t value) {
