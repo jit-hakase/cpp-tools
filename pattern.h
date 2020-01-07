@@ -4,15 +4,18 @@
 template <typename T>
 class Prototype {
 public:
-	void init_object(const T &prototype_object) {
-		m_prototype_object = prototype_object;
+	static void init_object(const T &prototype_object) {
+		s_prototype_object = prototype_object;
 	}
-	T clone_object() {
-		return m_prototype_object;
+	static T clone_object() {
+		return s_prototype_object;
 	}
 private:
-	T m_prototype_object;
+	static T s_prototype_object;
 };
+
+template <typename T>
+T Prototype<T>::s_prototype_object;
 
 class Factory {
 public:
