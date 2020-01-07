@@ -2,6 +2,7 @@
 #define CONNECTION_POOL_H
 #include <mutex>
 #include <queue>
+#include <memory>
 
 template <typename T>
 class Singleton {
@@ -16,69 +17,63 @@ template <typename T>
 class ConnectionPool {
 public:
 	ConnectionPool() = default;
-	
-	~ConnectionPool() {
-		std::lock_guard<std::mutex> lg(m_conn_mtx);
-		while (!m_conn_pool.empty()) {
-			auto conn = m_conn_pool.front();
-			m_conn_pool.pop();
-			delete conn;
-		}
-	}
+	~ConnectionPool() = default;
 	
 	void init(int num) {
 		std::lock_guard<std::mutex> lg(m_conn_mtx);
-		auto conn = new T;
 		while (num--) {
-			m_conn_pool.push(conn);
+			m_conn_pool.push(std::make_shared<T>());
 		}
 	}
 	
-	T* get() {
+	std::shared_ptr<T> get() {
 		std::lock_guard<std::mutex> lg(m_conn_mtx);
 		if (!m_conn_pool.empty()) {
 			auto conn = m_conn_pool.front();
 			m_conn_pool.pop();
-			return conn;	
+			return conn;
 		} else {
 			return nullptr;
 		}
 	}
 	
-	void release(T *conn) {
+	void release(std::shared_ptr<T> conn) {
 		std::lock_guard<std::mutex> lg(m_conn_mtx);
-		if (conn != nullptr) {
+		if (conn) {
 			m_conn_pool.push(conn);
 		}
 	}
 private:
-	std::queue<T*> m_conn_pool;
+	std::queue<std::shared_ptr<T>> m_conn_pool;
 	std::mutex m_conn_mtx;
 };
 
 template <typename T>
 class Connection {
 public:
-	Connection() {
-		while (m_conn == nullptr) {
-			m_conn = Singleton<ConnectionPool<T>>::get_instance()->get();
-		}
-	}
+	Connection() = default;
 	
 	~Connection() {
 		release();
 	}
 	
-	T* get() {
+	std::shared_ptr<T> get(int timeout = 1) {
+		while (m_conn == nullptr) {
+			m_conn = Singleton<ConnectionPool<T>>::get_instance()->get();
+			//sleep(timeout);
+		}
 		return m_conn;
 	}
 	
 	void release() {
+		std::lock_guard<std::mutex> lg(m_conn_mtx);
 		Singleton<ConnectionPool<T>>::get_instance()->release(m_conn);
+		m_conn = nullptr;
 	}
 	
 private:
-	T *m_conn = nullptr;
+	std::shared_ptr<T> m_conn;
+	std::mutex m_conn_mtx;
 };
 
 #include <iostream>
