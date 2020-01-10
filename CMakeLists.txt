@@ -21,8 +21,6 @@ execute_process(
 
 set(VERSION ${COMMIT_NUMBER}.${COMMIT_HASH})
 
-set(VERSION ${COMMIT_NUMBER}.${COMMIT_HASH})
-
 configure_file(
 	${WORK_DIR}/Version.h.in
 	${WORK_DIR}/Version.h
