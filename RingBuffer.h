@@ -18,22 +18,14 @@ public:
 		if (nullptr != m_buffer) delete m_buffer;
 	}
 	
-	bool full()	const {
-		return (m_tail + 1) % m_size == m_head;
-	}
-	
-	bool empty() const {
-		return m_head == m_tail;
-	}
-	
 	void push(const T object) {
-		while (full()) ;
+		while ((m_tail + 1) % m_size == m_head) ;
 		m_buffer[m_tail] = object;
 		m_tail = (m_tail + 1) % m_size;
 	}
 	
 	T pop() {
-		while (empty()) ;
+		while (m_head == m_tail) ;
 		T object = m_buffer[m_head];
 		m_head = (m_head + 1) % m_size;
 		return object;
@@ -47,7 +39,8 @@ public:
 	
 private:
 	T *m_buffer;
-	const int m_size;
-	std::atomic<int> m_head, m_tail;
+	int m_size;
+	std::atomic<int> m_head;
+	std::atomic<int> m_tail;
 };
 #endif
