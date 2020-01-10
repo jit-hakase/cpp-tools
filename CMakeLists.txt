@@ -12,16 +12,18 @@ execute_process(
 )
 
 execute_process(
-	COMMAND git log --pretty=oneline
+	COMMAND git log --pretty=oneline --abbrev-commit
 	COMMAND head -1
-	COMMAND awk '{$h=substr($1, 0, 7);print $h}'
+	COMMAND cut -d ' ' -f 1
 	COMMAND tr -d '\n'
 	OUTPUT_VARIABLE COMMIT_HASH
 )
 
 set(VERSION ${COMMIT_NUMBER}.${COMMIT_HASH})
 
-configuare_file(
+set(VERSION ${COMMIT_NUMBER}.${COMMIT_HASH})
+
+configure_file(
 	${WORK_DIR}/Version.h.in
 	${WORK_DIR}/Version.h
 )
