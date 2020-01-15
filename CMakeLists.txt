@@ -14,7 +14,7 @@ execute_process(
 execute_process(
 	COMMAND git log --pretty=oneline --abbrev-commit
 	COMMAND head -1
-	COMMAND cut -d ' ' -f 1
+	COMMAND cut -d " " -f 1
 	COMMAND tr -d '\n'
 	OUTPUT_VARIABLE COMMIT_HASH
 )
