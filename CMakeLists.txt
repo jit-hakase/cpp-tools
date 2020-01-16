@@ -22,19 +22,19 @@ execute_process(
 set(VERSION ${COMMIT_NUMBER}.${COMMIT_HASH})
 
 configure_file(
-	${WORK_DIR}/Version.h.in
-	${WORK_DIR}/Version.h
+	${WORK_DIR}/include/Version.h.in
+	${WORK_DIR}/include/Version.h
 )
 
 option(DEBUG ON)
 
 if (DEBUG)
-add_definitions(-D DEBUG)
-set(CMAKE_BUILD_TYPE "Debug")
-set(CMAKE_CXX_FLAGS_RELEASE "ENV{CXXFLAGS} -g -O0 -Wall -rdynamic")
+	add_definitions(-D DEBUG)
+	set(CMAKE_BUILD_TYPE "Debug")
+	set(CMAKE_CXX_FLAGS_RELEASE "ENV{CXXFLAGS} -g -O0 -Wall -rdynamic")
 else ()
-set(CMAKE_BUILD_TYPE "Release")
-set(CMAKE_CXX_FLAGS_RELEASE "ENV{CXXFLAGS} -O2 -Wall")
+	set(CMAKE_BUILD_TYPE "Release")
+	set(CMAKE_CXX_FLAGS_RELEASE "ENV{CXXFLAGS} -O2 -Wall")
 endif ()
 
 include_directories(include)
