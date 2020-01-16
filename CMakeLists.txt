@@ -26,11 +26,16 @@ configure_file(
 	${WORK_DIR}/Version.h
 )
 
-#set(CMAKE_BUILD_TYPE "Debug")
-#set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -g -O2 -Wall -rdynamic")
+option(DEBUG ON)
 
+if (DEBUG)
+add_definitions(-D DEBUG)
+set(CMAKE_BUILD_TYPE "Debug")
+set(CMAKE_CXX_FLAGS_RELEASE "ENV{CXXFLAGS} -g -O0 -Wall -rdynamic")
+else ()
 set(CMAKE_BUILD_TYPE "Release")
-set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O2 -Wall")
+set(CMAKE_CXX_FLAGS_RELEASE "ENV{CXXFLAGS} -O2 -Wall")
+endif ()
 
 include_directories(include)
 
