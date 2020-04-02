@@ -9,3 +9,19 @@ https://www.nybek.com/blog/2015/04/29/so_linger-on-non-blocking-sockets/
 
 buffer mode for stdio and stdout
 http://www.pixelbeat.org/programming/stdio_buffering/
+
+Linux errno
+https://www-numi.fnal.gov/offline_software/srt_public_context/WebDocs/Errors/unix_system_errors.html
+
+Ascii
+http://www.asciitable.com/
+
+Udp connect/bind
+https://stackoverflow.com/questions/9741392/can-you-bind-and-connect-both-ends-of-a-udp-connection
+
+MSG_WAITALL
+https://stackoverflow.com/questions/2943434/recv-with-msg-nonblock-and-msg-waitall
+
+sync system/hardware time
+https://askubuntu.com/questions/229268/how-to-change-system-time-or-force-a-sync-with-hardware-clock
+
