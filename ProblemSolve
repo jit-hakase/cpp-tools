@@ -30,3 +30,12 @@ https://www.stev.org/post/usinggdbtodebugacorefile
 
 gcc rdynamic
 https://stackoverflow.com/questions/36692315/what-exactly-does-rdynamic-do-and-when-exactly-is-it-needed
+
+array decay
+https://stackoverflow.com/questions/1461432/what-is-array-decaying
+
+c++11 spinlock
+https://stackoverflow.com/questions/26583433/c11-implementation-of-spinlock-using-atomic
+
+c++11 singleton
+https://stackoverflow.com/questions/11711920/how-to-implement-multithread-safe-singleton-in-c11-without-using-mutex
