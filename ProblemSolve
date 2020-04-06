@@ -25,3 +25,8 @@ https://stackoverflow.com/questions/2943434/recv-with-msg-nonblock-and-msg-waita
 sync system/hardware time
 https://askubuntu.com/questions/229268/how-to-change-system-time-or-force-a-sync-with-hardware-clock
 
+gdb core file
+https://www.stev.org/post/usinggdbtodebugacorefile
+
+gcc rdynamic
+https://stackoverflow.com/questions/36692315/what-exactly-does-rdynamic-do-and-when-exactly-is-it-needed
