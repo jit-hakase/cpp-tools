@@ -39,3 +39,6 @@ https://stackoverflow.com/questions/26583433/c11-implementation-of-spinlock-usin
 
 c++11 singleton
 https://stackoverflow.com/questions/11711920/how-to-implement-multithread-safe-singleton-in-c11-without-using-mutex
+
+cmake link library
+https://blog.csdn.net/weixin_39956356/article/details/100412382
