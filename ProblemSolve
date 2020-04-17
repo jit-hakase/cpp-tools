@@ -45,3 +45,9 @@ https://blog.csdn.net/weixin_39956356/article/details/100412382
 
 libpcap loss packet
 https://stackoverflow.com/questions/29281142/packet-loss-when-using-pcap-loop
+
+popen return code
+https://stackoverflow.com/questions/27453248/does-pclose-return-pipes-termination-status-shifted-left-by-eight-bits-on-all
+
+c ## operator
+https://www.geeksforgeeks.org/and-operators-in-c/
