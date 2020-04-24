@@ -72,3 +72,6 @@ https://stackoverflow.com/questions/23782333/tcpdump-filter-src-dst-port
 
 ifconfig change mtu
 https://support.purevpn.com/how-to-change-mtu-value-on-linux
+
+freopen stdout
+https://stackoverflow.com/questions/7664788/freopen-stdout-and-console
