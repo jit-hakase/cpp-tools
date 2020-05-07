@@ -75,3 +75,13 @@ https://support.purevpn.com/how-to-change-mtu-value-on-linux
 
 freopen stdout
 https://stackoverflow.com/questions/7664788/freopen-stdout-and-console
+
+check pid exist
+https://stackoverflow.com/questions/3043978/how-to-check-if-a-process-id-pid-exists
+
+check process exist by name
+https://www.cyberciti.biz/faq/bash-check-if-process-is-running-or-notonlinuxunix/
+
+bash timestamp
+https://stackoverflow.com/questions/17066250/create-timestamp-variable-in-bash-script
+
