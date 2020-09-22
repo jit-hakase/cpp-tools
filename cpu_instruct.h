@@ -18,4 +18,30 @@ uint64_t rdtscp() {
 	return (uint64_t)(__a) | ((uint64_t)(__d) << 32); 
 }
 */
+
+#include <pthread.h>
+
+inline int bind_cpu_core(int cpu_id, int prior) {
+	cpu_set_t mask;
+	pthread_attr_t attr;
+	sched_param param;
+	
+	if (-1 == cpu_id) return 0;
+	
+	CPU_ZERO(&mask);
+	CPU_SET(cpu_id, &mask);
+	
+	if (0 != pthread_attr_init(&attr)) return -1;
+	
+	if (0 != pthread_setaffinity_np(pthread_self(), sizeof(mask), &mask)) return -1;
+	
+	if (0 != pthread_attr_setschedpolicy(&attr, SCHED_RR)) return -1;
+	
+	param.__sched_priority = prior;
+	
+	if (0 != pthread_attr_setschedparam(&attr, &param)) return -1;
+	
+	return 0;
+}
+
 #endif
